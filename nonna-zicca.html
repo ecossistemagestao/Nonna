@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nonna Zicca — Projeto de Marketing & Posicionamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#173F32;
+    --verde-esc:#0F2A21;
+    --creme:#F6EFDD;
+    --creme-2:#EFE6CF;
+    --rosso:#B5271F;
+    --giallo:#E3A82B;
+    --tinta:#241A14;
+    --linha:rgba(36,26,20,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:var(--creme);
+    color:var(--tinta);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 22px}
+  h1,h2,h3,.disp{font-family:'Fraunces',serif}
+
+  /* eyebrow */
+  .eyebrow{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:600;
+    color:var(--rosso);font-size:1.05rem;letter-spacing:.01em;
+    display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  }
+  .eyebrow::before{content:"";width:26px;height:2px;background:var(--rosso);display:inline-block}
+  section.verde .eyebrow{color:var(--giallo)}
+  section.verde .eyebrow::before{background:var(--giallo)}
+
+  /* HERO */
+  .hero{
+    background:var(--verde);color:var(--creme);
+    padding:70px 0 64px;position:relative;overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(227,168,43,.10), transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(181,39,31,.14), transparent 42%);
+  }
+  .hero .wrap{position:relative;z-index:1}
+  .kicker{
+    font-family:'Fraunces',serif;font-style:italic;color:var(--giallo);
+    font-size:1.1rem;margin-bottom:18px;
+  }
+  .hero h1{
+    font-weight:900;font-size:clamp(2.6rem,8vw,4.5rem);line-height:1.02;
+    letter-spacing:-.01em;margin-bottom:22px;
+  }
+  .hero h1 em{font-style:italic;color:var(--giallo);font-weight:600}
+  .hero p.lead{
+    font-size:1.18rem;max-width:620px;color:rgba(246,239,221,.9);
+  }
+  .tag{
+    display:inline-block;margin-top:30px;border:1px solid rgba(246,239,221,.35);
+    border-radius:100px;padding:8px 18px;font-size:.82rem;letter-spacing:.14em;
+    text-transform:uppercase;color:rgba(246,239,221,.85);
+  }
+
+  /* generic section */
+  section{padding:64px 0}
+  section.verde{background:var(--verde);color:var(--creme)}
+  section.esc{background:var(--verde-esc);color:var(--creme)}
+  h2{font-weight:900;font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.08;margin-bottom:18px;letter-spacing:-.01em}
+  section.verde h2, section.esc h2{color:var(--creme)}
+  .sub{font-size:1.08rem;max-width:640px;margin-bottom:34px;color:inherit;opacity:.92}
+
+  /* fact strip */
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--linha);border:1px solid var(--linha);border-radius:14px;overflow:hidden;margin-top:8px}
+  .fact{background:var(--creme);padding:22px 18px}
+  .fact b{font-family:'Fraunces',serif;font-weight:900;font-size:1.9rem;display:block;color:var(--rosso);line-height:1}
+  .fact span{font-size:.82rem;opacity:.75;display:block;margin-top:8px}
+  @media(max-width:640px){.facts{grid-template-columns:repeat(2,1fr)}}
+
+  /* tension card */
+  .tension{
+    margin-top:34px;border-left:4px solid var(--giallo);
+    background:var(--creme-2);border-radius:0 12px 12px 0;padding:24px 26px;
+  }
+  .tension .lbl{font-family:'Fraunces',serif;font-style:italic;color:var(--rosso);font-weight:600;margin-bottom:6px}
+  .tension p{font-size:1.05rem}
+
+  /* RECIPE CARD (signature) */
+  .receita{
+    background:var(--creme);color:var(--tinta);border-radius:16px;
+    padding:0;overflow:hidden;box-shadow:0 24px 60px -30px rgba(0,0,0,.5);
+    border:1px solid rgba(36,26,20,.1);
+  }
+  .receita .top{
+    background:var(--rosso);color:var(--creme);padding:26px 30px;
+    display:flex;justify-content:space-between;align-items:flex-end;gap:12px;
+  }
+  .receita .top .t{font-family:'Fraunces',serif;font-weight:900;font-size:1.7rem;line-height:1.05}
+  .receita .top .n{font-family:'Fraunces',serif;font-style:italic;opacity:.85;white-space:nowrap}
+  .receita .body{padding:30px}
+  .receita .stmt{
+    font-family:'Fraunces',serif;font-size:1.35rem;line-height:1.4;margin-bottom:28px;
+  }
+  .receita .stmt mark{background:linear-gradient(transparent 60%, rgba(227,168,43,.55) 0);color:inherit;padding:0 2px}
+  .ingr{border-top:1px dashed var(--linha);padding-top:22px}
+  .ingr h4{font-family:'Fraunces',serif;font-style:italic;color:var(--rosso);font-size:1.15rem;margin-bottom:14px}
+  .ingr ul{list-style:none}
+  .ingr li{padding:9px 0 9px 30px;position:relative;border-bottom:1px solid var(--linha);font-size:.98rem}
+  .ingr li:last-child{border-bottom:0}
+  .ingr li::before{content:"";position:absolute;left:6px;top:16px;width:9px;height:9px;border:2px solid var(--rosso);border-radius:50%}
+  .ingr li b{display:block;font-family:'Fraunces',serif;font-weight:600}
+
+  /* funnel steps */
+  .steps{display:flex;flex-direction:column;gap:2px;border-radius:14px;overflow:hidden;border:1px solid rgba(246,239,221,.2)}
+  .step{background:rgba(246,239,221,.06);padding:24px 26px;display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start}
+  .step .num{font-family:'Fraunces',serif;font-weight:900;font-size:2.2rem;color:var(--giallo);line-height:.9}
+  .step h3{font-size:1.25rem;font-weight:600;margin-bottom:6px}
+  .step .goal{color:var(--giallo);font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;margin-bottom:10px}
+  .step p{font-size:.96rem;opacity:.9}
+  .step .kpi{margin-top:12px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+  @media(max-width:560px){.step{grid-template-columns:1fr}.step .num{font-size:1.7rem}}
+
+  /* pillars grid */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  .card{background:var(--creme);border:1px solid rgba(36,26,20,.1);border-radius:14px;padding:24px}
+  section.verde .card,section.esc .card{background:rgba(246,239,221,.06);border-color:rgba(246,239,221,.18);color:var(--creme)}
+  .card .pill{display:inline-block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--rosso);font-weight:700;margin-bottom:10px}
+  section.verde .card .pill,section.esc .card .pill{color:var(--giallo)}
+  .card h3{font-size:1.25rem;font-weight:600;margin-bottom:8px}
+  .card p{font-size:.95rem;opacity:.9}
+  .card .ex{margin-top:12px;font-family:'Fraunces',serif;font-style:italic;font-size:.95rem;opacity:.85}
+
+  /* channels */
+  .chan{display:grid;grid-template-columns:130px 1fr;gap:0;border-top:1px solid var(--linha)}
+  .chan:last-of-type{border-bottom:1px solid var(--linha)}
+  .chan .k{padding:18px 0;font-family:'Fraunces',serif;font-weight:600;font-size:1.1rem;color:var(--rosso)}
+  .chan .v{padding:18px 0;font-size:.96rem}
+  .chan .v b{font-weight:600}
+  @media(max-width:560px){.chan{grid-template-columns:1fr;gap:2px;padding:14px 0}.chan .k,.chan .v{padding:2px 0}}
+
+  /* timeline */
+  .fase{display:grid;grid-template-columns:150px 1fr;gap:22px;padding:26px 0;border-top:1px solid rgba(246,239,221,.18)}
+  .fase .when{font-family:'Fraunces',serif}
+  .fase .when .big{font-weight:900;font-size:1.5rem;color:var(--giallo);display:block}
+  .fase .when .lbl{font-style:italic;opacity:.85;font-size:.95rem}
+  .fase ul{list-style:none}
+  .fase li{padding:6px 0 6px 22px;position:relative;font-size:.97rem;opacity:.94}
+  .fase li::before{content:"→";position:absolute;left:0;color:var(--giallo)}
+  @media(max-width:560px){.fase{grid-template-columns:1fr;gap:10px}}
+
+  /* system stack */
+  .stack{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+  @media(max-width:640px){.stack{grid-template-columns:1fr}}
+  .sys{background:var(--creme);border-radius:14px;padding:24px;border:1px solid rgba(36,26,20,.1)}
+  .sys .lvl{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso);font-weight:700}
+  .sys h3{font-size:1.2rem;font-weight:600;margin:8px 0}
+  .sys p{font-size:.93rem;opacity:.88}
+  .sys .why{margin-top:12px;font-size:.85rem;background:var(--creme-2);border-radius:8px;padding:10px 12px}
+  .sys .why b{color:var(--rosso)}
+  .prio{display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-left:8px;vertical-align:middle}
+  .p1{background:var(--rosso);color:var(--creme)}
+  .p2{background:var(--giallo);color:var(--tinta)}
+  .p3{background:var(--creme-2);color:var(--tinta);border:1px solid var(--linha)}
+
+  /* metrics */
+  .mgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:640px){.mgrid{grid-template-columns:1fr}}
+  .metric{border:1px solid rgba(246,239,221,.2);border-radius:12px;padding:20px}
+  .metric .m{font-family:'Fraunces',serif;font-weight:600;color:var(--giallo);font-size:1.05rem;margin-bottom:4px}
+  .metric p{font-size:.88rem;opacity:.85}
+
+  /* next steps */
+  .next{background:var(--creme-2);border-radius:16px;padding:34px 30px;margin-top:10px}
+  .next ol{counter-reset:s;list-style:none;margin-top:8px}
+  .next li{counter-increment:s;padding:14px 0 14px 46px;position:relative;border-bottom:1px solid var(--linha);font-size:1rem}
+  .next li:last-child{border-bottom:0}
+  .next li::before{content:counter(s);position:absolute;left:0;top:12px;width:30px;height:30px;background:var(--rosso);color:var(--creme);border-radius:50%;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:700;font-size:.95rem}
+  .next li b{font-weight:600}
+
+  footer{background:var(--verde-esc);color:rgba(246,239,221,.7);padding:34px 0;font-size:.85rem;text-align:center}
+  footer em{font-family:'Fraunces',serif;color:var(--giallo)}
+
+  .note{font-size:.8rem;opacity:.7;margin-top:22px;font-style:italic;font-family:'Fraunces',serif}
+
+  /* competitive map */
+  .mapawrap{display:grid;grid-template-columns:1fr;gap:26px;align-items:center}
+  @media(min-width:760px){.mapawrap{grid-template-columns:460px 1fr}}
+  .mapa{position:relative;width:100%;max-width:460px;margin:0 auto;aspect-ratio:1/1;border:1px solid var(--linha);border-radius:14px;background:linear-gradient(160deg,var(--creme-2),var(--creme))}
+  .mapa .axis{position:absolute;background:var(--linha)}
+  .mapa .ax-x{left:6%;right:6%;top:50%;height:1px}
+  .mapa .ax-y{top:6%;bottom:6%;left:50%;width:1px}
+  .mapa .lab{position:absolute;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta);opacity:.5;font-weight:700;white-space:nowrap}
+  .mapa .lab.t{top:10px;left:50%;transform:translateX(-50%)}
+  .mapa .lab.b{bottom:10px;left:50%;transform:translateX(-50%)}
+  .mapa .lab.l{left:14px;top:50%;transform:translateY(-50%) rotate(-90deg);transform-origin:left center}
+  .mapa .lab.r{right:14px;top:50%;transform:translateY(-50%) rotate(90deg);transform-origin:right center}
+  .dot{position:absolute;transform:translate(-50%,-50%);text-align:center;width:104px}
+  .dot .pt{width:11px;height:11px;border-radius:50%;background:var(--tinta);opacity:.4;margin:0 auto 6px}
+  .dot .nm{font-size:.72rem;line-height:1.2;opacity:.7}
+  .dot.star .pt{width:20px;height:20px;background:var(--rosso);opacity:1;box-shadow:0 0 0 6px rgba(181,39,31,.16)}
+  .dot.star .nm{font-family:'Fraunces',serif;font-weight:700;font-size:.98rem;color:var(--rosso);opacity:1}
+  .mapnote{font-size:1.02rem}
+  .mapnote b{color:var(--rosso)}
+
+  /* delivery fronts mini list */
+  .card ul.mini{list-style:none;margin-top:12px}
+  .card ul.mini li{padding:8px 0 8px 20px;position:relative;font-size:.92rem;opacity:.94;border-top:1px solid rgba(246,239,221,.14)}
+  .card ul.mini li:first-child{border-top:0}
+  .card ul.mini li::before{content:"—";position:absolute;left:0;color:var(--giallo)}
+  .card ul.mini li b{font-weight:600;color:var(--creme)}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Progetto di marketing · Nonna Zicca</div>
+    <h1>Todo mundo tem <em>uma nonna na fachada</em>.<br>Vocês têm uma <em>de verdade</em>.</h1>
+    <p class="lead">O plano abaixo transforma o maior ativo da marca — a Anizilda e o caderno de receitas que atravessou três gerações — no motivo pelo qual Brasília escolhe a Nonna Zicca em vez do italiano industrializado do lado.</p>
+    <span class="tag">Posicionamento · Marketing · Sistema</span>
+  </div>
+</header>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">Il punto di partenza</div>
+    <h2>Onde a marca está hoje</h2>
+    <p class="sub">Uma casa de massas italiana nascida em Brasília, inspirada nas receitas da Anizilda — a Nonna Zicca — e levada adiante pelo neto, Luiz Carlos. Já em formato de franquia, com operação em praça de alimentação e ambiente sentado.</p>
+    <div class="facts">
+      <div class="fact"><b>2014</b><span>ano de fundação da marca</span></div>
+      <div class="fact"><b>3</b><span>gerações no mesmo caderno de receitas</span></div>
+      <div class="fact"><b>Franquia</b><span>modelo já em expansão</span></div>
+      <div class="fact"><b>Massas</b><span>gnocchi, farfalle e cia. como carro-chefe</span></div>
+    </div>
+    <div class="tension">
+      <div class="lbl">A tensão que vale dinheiro</div>
+      <p>"Nonna" virou clichê de cardápio — meia dúzia de casas usa a imagem da vovó italiana sem ter uma. A Nonna Zicca tem nome, rosto e história reais, mas comunica isso como qualquer trattoria genérica. <b>O ativo mais defensável da marca hoje é o menos explorado.</b></p>
+    </div>
+  </div>
+</section>
+
+<section class="verde">
+  <div class="wrap rv">
+    <div class="eyebrow">La ricetta del posizionamento</div>
+    <h2>Estratégia de posicionamento</h2>
+    <p class="sub">Segmentar, escolher a praça a dominar primeiro e cravar uma frase que o concorrente não consegue copiar — porque ele não tem uma Anizilda.</p>
+
+    <div class="receita">
+      <div class="top">
+        <div class="t">Posicionamento<br>Nonna Zicca</div>
+        <div class="n">rende: 1 marca inconfundível</div>
+      </div>
+      <div class="body">
+        <p class="stmt">Para quem em Brasília quer <mark>comida italiana de verdade</mark>, e não massa de saquinho requentada, a Nonna Zicca é a casa que serve <mark>a receita de uma nonna real</mark> — porque cada prato sai do caderno da Anizilda, guardado e feito à mão por três gerações.</p>
+
+        <div class="ingr">
+          <h4>Ingredientes — a quem servimos primeiro</h4>
+          <ul>
+            <li><b>Alvo-âncora · A família afetiva</b>Quem vai ao shopping em família e associa massa a memória, colo e domingo. É quem paga mais por "comida como a da minha avó fazia".</li>
+            <li><b>Motor de recorrência · O delivery de casal e de casa</b>Jantar de sexta, conforto, "hoje não vou cozinhar". É onde está a frequência — e onde a marca captura dados do cliente.</li>
+            <li><b>Fluxo de semana · O executivo do Plano Piloto</b>Almoço de dia útil e pedido no trabalho. Ticket menor, volume alto, previsível.</li>
+            <li><b>Margem alta · A ocasião</b>Aniversário, comemoração, encontro. Poucos pedidos, ticket grande, alto valor de marca.</li>
+          </ul>
+        </div>
+
+        <div class="ingr">
+          <h4>Modo de preparo — o que muda na prática</h4>
+          <ul>
+            <li><b>Pare de vender "italiano".</b>Venda a Anizilda. A origem verdadeira é a diferença que o congelado nunca vai ter.</li>
+            <li><b>Assine tudo com "feito à mão / do caderno da Nonna".</b>Da embalagem ao delivery, cada ponto de contato reforça artesanal x industrial. É o caderno da Nonna virando assinatura.</li>
+            <li><b>Escolha o delivery como frente de ataque.</b>É o canal de recorrência e o único que devolve o cliente pra dentro da marca (e não pro app).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="note">A frase de posicionamento é a régua: toda peça, foto e legenda precisa passar por ela. Se não reforça "nonna real + feito à mão", corta.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">La mappa</div>
+    <h2>Onde a Nonna Zicca joga sozinha</h2>
+    <p class="sub">O mercado de massa em Brasília se divide em três cantos ocupados — e um espaço vazio. É nesse vazio que a marca não tem concorrente direto.</p>
+    <div class="mapawrap">
+      <div class="mapa" role="img" aria-label="Mapa de posicionamento: Nonna Zicca ocupa o espaço de massa artesanal com preço acessível e delivery forte">
+        <div class="axis ax-x"></div>
+        <div class="axis ax-y"></div>
+        <div class="lab t">Experiência &amp; marca</div>
+        <div class="lab b">Só preço / commodity</div>
+        <div class="lab l">Industrial</div>
+        <div class="lab r">Artesanal</div>
+        <div class="dot" style="left:25%;top:27%"><div class="pt"></div><div class="nm">Rede de esteira</div></div>
+        <div class="dot" style="left:76%;top:23%"><div class="pt"></div><div class="nm">Cantina tradicional (cara, sem delivery)</div></div>
+        <div class="dot" style="left:28%;top:77%"><div class="pt"></div><div class="nm">Cozinha de delivery sem marca</div></div>
+        <div class="dot star" style="left:70%;top:56%"><div class="pt"></div><div class="nm">Nonna Zicca</div></div>
+      </div>
+      <div>
+        <p class="mapnote">As redes grandes vencem no <b>industrial padronizado</b>: rápido e barato, mas sem alma. As cantinas tradicionais têm o artesanal, mas são <b>caras e fracas no delivery</b>. As cozinhas de delivery sem marca competem só no preço — massa como commodity.</p>
+        <p class="mapnote" style="margin-top:16px">A Nonna Zicca ocupa o vazio: <b>artesanal de verdade, no ticket do dia a dia, e forte no delivery</b>. Ninguém está exatamente ali. A estratégia inteira é defender esse ponto — não escorregar pro canto industrial nem virar cantina cara sem entrega.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">Il funnel</div>
+    <h2>O projeto de marketing, em funil</h2>
+    <p class="sub">Do desconhecido ao cliente que traz os amigos. A regra: arrume a conversão antes de gastar em alcance — não adianta lotar o topo se o pedido escorre no fim.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">01</div>
+        <div>
+          <h3>Descoberta</h3>
+          <div class="goal">Aparecer pra quem procura comida de verdade</div>
+          <p>Reels de bastidor da massa fresca sendo aberta; parcerias com criadores gastronômicos de Brasília; Google Meu Negócio e SEO local ("massa artesanal Brasília", "cantina Conjunto Nacional"); presença cuidada no iFood como vitrine.</p>
+          <div class="kpi">Métrica · alcance, buscas por marca, visitas ao perfil</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">02</div>
+        <div>
+          <h3>Interesse</h3>
+          <div class="goal">Contar a história e provar o artesanal</div>
+          <p>Série "O Caderno da Nonna" (origem de cada prato); vídeos de processo; captura de contato via WhatsApp e lista de transmissão em troca de um mimo na próxima visita.</p>
+          <div class="kpi">Métrica · seguidores qualificados, contatos captados, salvamentos</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">03</div>
+        <div>
+          <h3>Consideração</h3>
+          <div class="goal">Virar a opção preferida, não uma entre várias</div>
+          <p>Avaliações no Google e no iFood como prioridade operacional; fotos reais dos pratos (não banco de imagem); cardápio digital claro com boa descrição e preço transparente.</p>
+          <div class="kpi">Métrica · nota média, volume de avaliações, cliques no cardápio</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">04</div>
+        <div>
+          <h3>Decisão</h3>
+          <div class="goal">Tornar o pedido fácil e irresistível</div>
+          <p>Delivery direto (fora do app) com condição melhor; combos família e "jantar de casal"; incentivo na primeira compra direta pra migrar o cliente do marketplace pro canal próprio.</p>
+          <div class="kpi">Métrica · taxa de conversão, ticket médio, % de pedido direto</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">05</div>
+        <div>
+          <h3>Fidelização</h3>
+          <div class="goal">Transformar cliente em quem traz os outros</div>
+          <p>Clube/fidelidade simples (a cada X, um mimo); pedido de avaliação no pós-venda; incentivo a conteúdo do cliente ("almoço na Nonna"); campanhas de recompra por WhatsApp.</p>
+          <div class="kpi">Métrica · frequência de recompra, LTV, indicações</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="esc">
+  <div class="wrap rv">
+    <div class="eyebrow">I contenuti</div>
+    <h2>Os quatro pilares de conteúdo</h2>
+    <p class="sub">Grava uma vez, distribui em tudo. Cada pilar vira Reels, post, story e material de delivery. O tom foge do corporativo: observação afiada, com carinho e um pouco de provocação.</p>
+    <div class="grid2">
+      <div class="card">
+        <span class="pill">Pilar 1 · Coração</span>
+        <h3>O Caderno da Nonna</h3>
+        <p>A história da Anizilda e a origem de cada prato. É o pilar que ninguém consegue copiar — porque é verdade.</p>
+        <p class="ex">"Esse molho não tem receita na internet. Tem no caderno da minha avó."</p>
+      </div>
+      <div class="card">
+        <span class="pill">Pilar 2 · Prova</span>
+        <h3>Massa de Verdade</h3>
+        <p>Bastidor: a massa sendo aberta, o gnocchi sendo enrolado à mão. Mostra o artesanal em vez de afirmar.</p>
+        <p class="ex">"Enquanto uns descongelam, a gente abre."</p>
+      </div>
+      <div class="card">
+        <span class="pill">Pilar 3 · Mesa</span>
+        <h3>A Mesa Italiana</h3>
+        <p>O ritual: família, domingo, o prato que junta todo mundo. Conecta a marca a ocasião e afeto.</p>
+        <p class="ex">"Almoço de domingo não se resolve no micro-ondas."</p>
+      </div>
+      <div class="card">
+        <span class="pill">Pilar 4 · Aviso</span>
+        <h3>Aviso Tá Dado</h3>
+        <p>O tom confrontador que engaja: massa de saquinho não é cantina. Humor com fio de navalha, sem soar arrogante.</p>
+        <p class="ex">"Se vem em caixa de papelão pronto, não me chame de italiano."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">I canali</div>
+    <h2>Onde investir — e onde não</h2>
+    <p class="sub">Não estar em todo lugar. Dominar dois ou três canais onde o público de Brasília já está.</p>
+    <div class="chan"><div class="k">Próprios</div><div class="v"><b>Prioridade máxima.</b> Instagram, cardápio digital, WhatsApp e lista de transmissão. São os únicos ativos que a marca controla e que geram dado próprio.</div></div>
+    <div class="chan"><div class="k">Conquistados</div><div class="v"><b>Alto retorno, baixo custo.</b> Avaliações no Google e iFood, boca a boca, criadores gastronômicos locais, imprensa de Brasília (a chegada em novos pontos rende pauta).</div></div>
+    <div class="chan"><div class="k">Pagos</div><div class="v"><b>Cirúrgico.</b> Tráfego geolocalizado num raio das unidades, foco em delivery e horários de pico. Nada de verba espalhada.</div></div>
+    <div class="chan"><div class="k">Marketplace</div><div class="v"><b>Vitrine, não casa.</b> iFood traz cliente novo, mas cobra caro e fica com o dado. Usar pra aquisição e migrar o recorrente pro canal direto.</div></div>
+  </div>
+</section>
+
+<section class="esc">
+  <div class="wrap rv">
+    <div class="eyebrow">Le frontiere del delivery</div>
+    <h2>Duas frentes de delivery</h2>
+    <p class="sub">O delivery é o motor de recorrência do projeto. Ele se ganha em duas frentes que trabalham juntas: dominar o iFood sem virar refém dele, e usar dark kitchen pra crescer sem abrir salão.</p>
+    <div class="grid2">
+      <div class="card">
+        <span class="pill">Frente A · iFood</span>
+        <h3>Aquisição controlada</h3>
+        <p>O iFood é a maior vitrine de delivery do país — porta de entrada de cliente novo. A regra é usá-lo como canal de aquisição, não como dono da operação.</p>
+        <ul class="mini">
+          <li><b>Perfil de vitrine:</b> fotos reais dos pratos, descrição com a história da nonna, destaques e selo de destaque bem trabalhados.</li>
+          <li><b>Operação afiada:</b> tempo de preparo, nota, aceite e participação nas campanhas do app puxam o ranking — onde a Nonna Zicca aparece.</li>
+          <li><b>Ponte pro direto:</b> inserto na sacola e cupom "peça direto e ganhe" pra migrar o recorrente pro canal próprio.</li>
+          <li><b>Gestão de margem:</b> a taxa varia de ~12% a ~30% conforme o plano. Decidir o mix — o que compensa vender no app e o que puxar pro direto.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="pill">Frente B · Dark Kitchen</span>
+        <h3>Expansão sem salão</h3>
+        <p>Cozinha só de delivery pra alcançar bairros fora do raio das lojas físicas — e testar praça nova com investimento baixo antes de abrir franquia.</p>
+        <ul class="mini">
+          <li><b>Cobertura:</b> abrir a marca em regiões de Brasília onde não há loja, ampliando o raio de entrega sem custo de salão.</li>
+          <li><b>Franquia leve:</b> formato de dark kitchen como porta de entrada barata pro modelo de franquia — menos capex, mais pontos.</li>
+          <li><b>Teste de praça:</b> validar demanda de um bairro por delivery antes de comprometer capital em loja física.</li>
+          <li><b>Cuidado com a alma:</b> sem salão, a marca vive na embalagem e no conteúdo — a história da nonna precisa viajar dentro da sacola.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">O objetivo das duas frentes é o mesmo: mais entrega, menos dependência. Cada cliente que vem pelo app ou pela dark kitchen deve, com o tempo, virar cliente do canal direto — onde a marca fica com a margem e com o dado.</p>
+  </div>
+</section>
+
+<section class="verde">
+  <div class="wrap rv">
+    <div class="eyebrow">Il piano · 90 giorni</div>
+    <h2>Execução em três fases</h2>
+    <div class="fase">
+      <div class="when"><span class="big">Fase 1</span><span class="lbl">Dias 1–30 · Fundação</span></div>
+      <ul>
+        <li>Travar posicionamento e refazer bio, destaques e fotos de perfil</li>
+        <li>Google Meu Negócio otimizado nas unidades + rotina de pedir avaliação</li>
+        <li>Cardápio digital próprio no ar (QR na mesa + link da bio)</li>
+        <li>Primeiras 8 peças do "Caderno da Nonna" e "Massa de Verdade"</li>
+      </ul>
+    </div>
+    <div class="fase">
+      <div class="when"><span class="big">Fase 2</span><span class="lbl">Dias 31–60 · Recorrência</span></div>
+      <ul>
+        <li>Delivery direto no ar com condição melhor que o marketplace</li>
+        <li>Perfil do iFood otimizado + primeira ponte app → canal direto</li>
+        <li>Lista de WhatsApp ativa + primeira campanha de recompra</li>
+        <li>Tráfego pago geolocalizado em pico de delivery</li>
+        <li>2 parcerias com criadores gastronômicos de Brasília</li>
+      </ul>
+    </div>
+    <div class="fase">
+      <div class="when"><span class="big">Fase 3</span><span class="lbl">Dias 61–90 · Escala</span></div>
+      <ul>
+        <li>Clube de fidelidade rodando e medido</li>
+        <li>Combos família e ocasião com foto e página próprias</li>
+        <li>Piloto de dark kitchen em bairro fora do raio das lojas</li>
+        <li>Página de franqueado no site (atrair novos pontos)</li>
+        <li>Leitura de métricas e realocação de verba pro que converteu</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">Il sistema</div>
+    <h2>Sistema e site recomendados</h2>
+    <p class="sub">Regra de ouro: <b>construir o que diferencia, comprar o que é padrão.</b> Nada aqui justifica desenvolver do zero — o valor está em juntar as peças certas e capturar o dado do cliente, que hoje fica com o app.</p>
+    <div class="stack">
+      <div class="sys">
+        <span class="lvl">Camada 1 <span class="prio p1">Faça já</span></span>
+        <h3>Cardápio digital + pedido direto</h3>
+        <p>Cardápio próprio com QR na mesa e link na bio, integrado a pedido por WhatsApp/site. Ferramentas prontas de mercado (ex.: Goomer, Anota AI, Cardápio Web, Saipos) resolvem — validar qual integra melhor com a operação atual.</p>
+        <div class="why"><b>Por quê:</b> tira o recorrente da taxa do marketplace e devolve o cliente pra dentro da marca.</div>
+      </div>
+      <div class="sys">
+        <span class="lvl">Camada 2 <span class="prio p1">Faça já</span></span>
+        <h3>CRM + fidelidade no WhatsApp</h3>
+        <p>Base de clientes com histórico de pedido e disparo segmentado. Começar simples: lista de transmissão + planilha, evoluir pra ferramenta quando o volume pedir.</p>
+        <div class="why"><b>Por quê:</b> recompra é mais barata que aquisição. O dado do cliente é o ativo que o iFood não entrega.</div>
+      </div>
+      <div class="sys">
+        <span class="lvl">Camada 3 <span class="prio p2">Em seguida</span></span>
+        <h3>Site institucional + franquias</h3>
+        <p>Uma página que conta a história da Anizilda, mostra o cardápio, lista as unidades e — importante pro modelo de franquia — tem uma área "Seja um franqueado" que capta interessados.</p>
+        <div class="why"><b>Por quê:</b> dá autoridade à marca e transforma a expansão em canal de captação, não só de venda.</div>
+      </div>
+      <div class="sys">
+        <span class="lvl">Camada 4 <span class="prio p3">Quando escalar</span></span>
+        <h3>Painel de indicadores</h3>
+        <p>Um lugar só com o que importa: ticket médio, % de pedido direto x app, nota de avaliação, recompra por unidade. Semáforo simples, revisão semanal.</p>
+        <div class="why"><b>Por quê:</b> decisão de verba precisa de número, não de achismo. Mede o que a estratégia promete.</div>
+      </div>
+    </div>
+    <p class="note">Observação de integridade: não desenvolver sistema próprio agora. É caro, lento e o mercado já resolve. O dinheiro e o tempo rendem mais no conteúdo verdadeiro e na migração do cliente pro canal direto.</p>
+  </div>
+</section>
+
+<section class="esc">
+  <div class="wrap rv">
+    <div class="eyebrow">I numeri</div>
+    <h2>O que medir</h2>
+    <p class="sub">Poucos números, com dono e meta. Indicadores que antecipam a receita — não só os que a confirmam depois.</p>
+    <div class="mgrid">
+      <div class="metric"><div class="m">% pedido direto x app</div><p>O norte da estratégia: quanto da venda já não depende do marketplace.</p></div>
+      <div class="metric"><div class="m">Ticket médio</div><p>Combos e ocasião puxando o valor por pedido pra cima.</p></div>
+      <div class="metric"><div class="m">Frequência de recompra</div><p>Sinal de que a fidelização funciona — e o LTV cresce.</p></div>
+      <div class="metric"><div class="m">Nota e volume de avaliações</div><p>Prova social que sustenta a etapa de consideração.</p></div>
+      <div class="metric"><div class="m">Custo de aquisição</div><p>Quanto custa trazer um cliente novo — e se cai com marca mais forte.</p></div>
+      <div class="metric"><div class="m">Contatos captados</div><p>Tamanho da base própria de WhatsApp, o ativo de recompra.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap rv">
+    <div class="eyebrow">Adesso</div>
+    <h2>Próximos passos</h2>
+    <div class="next">
+      <ol>
+        <li><b>Aprovar o posicionamento</b> — a frase da "nonna real + feito à mão" vira a régua de tudo.</li>
+        <li><b>Levantar os números que faltam</b> — ticket, mix de canais, custo por pedido no app. Sem isso, as metas ficam no chute.</li>
+        <li><b>Colocar cardápio digital e pedido direto no ar</b> — a peça que começa a soltar a marca da taxa do marketplace.</li>
+        <li><b>Definir a frente de delivery</b> — afiar o iFood como aquisição e desenhar o piloto de dark kitchen pra ampliar o raio.</li>
+        <li><b>Produzir as 8 primeiras peças do Caderno da Nonna</b> — começar pela história, que é o ativo mais forte.</li>
+        <li><b>Marcar a leitura de 30 dias</b> — o que mover, o que cortar, pra onde vai a verba.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <em>Nonna Zicca</em> — projeto de marketing, posicionamento e sistema · proposta de trabalho
+  </div>
+</footer>
+
+<script>
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
